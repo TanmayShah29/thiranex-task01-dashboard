@@ -1,10 +1,10 @@
-// ===== SALES DASHBOARD - app.js =====
+// SALES DASHBOARD - app.js
 // Thiranex Internship | Task 01 | Tanmay
 
 let allData = [];
 let charts = {};
 
-// ===== CSV PARSER =====
+// CSV PARSER
 function parseCSV(text) {
   const lines = text.trim().split('\n');
   const headers = lines[0].split(',').map(h => h.trim());
@@ -13,7 +13,7 @@ function parseCSV(text) {
     const obj = {};
     headers.forEach((h, i) => obj[h] = vals[i]);
 
-    // --- DATA CLEANING ---
+    // DATA CLEANING
     // Standardize Casing for Categories & Products
     if (obj['Category']) obj['Category'] = obj['Category'].charAt(0).toUpperCase() + obj['Category'].slice(1).toLowerCase();
     if (obj['Product']) {
@@ -30,7 +30,7 @@ function parseCSV(text) {
   }).filter(r => r['Order ID']);
 }
 
-// ===== LOAD DEFAULT DATA =====
+// LOAD DEFAULT DATA
 async function loadDefaultData() {
   try {
     const res = await fetch('./data/sales_data.csv?v=' + Date.now());
@@ -44,7 +44,7 @@ async function loadDefaultData() {
   }
 }
 
-// ===== FILE UPLOAD =====
+// FILE UPLOAD
 function setupUpload() {
   const input = document.getElementById('csvInput');
   input.addEventListener('change', e => {
@@ -61,7 +61,7 @@ function setupUpload() {
   document.getElementById('uploadZone').addEventListener('click', () => input.click());
 }
 
-// ===== FILTERS =====
+// FILTERS
 function applyFilters() {
   const cat = document.getElementById('catFilter').value;
   const region = document.getElementById('regionFilter').value;
@@ -85,7 +85,7 @@ function resetFilters() {
   updateDashboard(allData);
 }
 
-// ===== KPI UPDATER =====
+// KPI UPDATER
 function updateKPIs(data) {
   const totalRevenue = data.reduce((s, r) => s + r['Revenue'], 0);
   const totalUnits = data.reduce((s, r) => s + r['Units Sold'], 0);
@@ -110,7 +110,7 @@ function formatNum(n) {
   return n.toString();
 }
 
-// ===== CHART HELPERS =====
+// CHART HELPERS
 const COLORS = {
   purple: '#6c63ff',
   teal: '#00d4aa',
@@ -125,7 +125,7 @@ function destroyChart(id) {
   if (charts[id]) { charts[id].destroy(); delete charts[id]; }
 }
 
-// ===== REVENUE TREND CHART =====
+// REVENUE TREND CHART
 function renderRevenueTrend(data) {
   destroyChart('trend');
   const monthly = {};
@@ -161,7 +161,7 @@ function renderRevenueTrend(data) {
   });
 }
 
-// ===== TOP PRODUCTS CHART =====
+// TOP PRODUCTS CHART
 function renderTopProducts(data) {
   destroyChart('products');
   const productRev = {};
@@ -184,7 +184,7 @@ function renderTopProducts(data) {
   });
 }
 
-// ===== CATEGORY PIE CHART =====
+// CATEGORY PIE CHART
 function renderCategoryPie(data) {
   destroyChart('category');
   const catRev = {};
@@ -221,7 +221,7 @@ function renderCategoryPie(data) {
   });
 }
 
-// ===== REGION BAR CHART =====
+// REGION BAR CHART
 function renderRegionChart(data) {
   destroyChart('region');
   const regionRev = {};
@@ -243,7 +243,7 @@ function renderRegionChart(data) {
   });
 }
 
-// ===== UNITS TREND =====
+// UNITS TREND
 function renderUnitsTrend(data) {
   destroyChart('units');
   const monthly = {};
@@ -276,7 +276,7 @@ function renderUnitsTrend(data) {
   });
 }
 
-// ===== SHARED CHART OPTIONS =====
+// SHARED CHART OPTIONS
 function chartOptions(yLabel, hasGradient) {
   const isCurrency = yLabel.includes('₹') || yLabel.toLowerCase().includes('revenue');
   return {
@@ -306,7 +306,7 @@ function chartOptions(yLabel, hasGradient) {
   };
 }
 
-// ===== DATA TABLE =====
+// DATA TABLE
 function renderTable(data) {
   const tbody = document.getElementById('dataTableBody');
   const display = data.slice(0, 20);
@@ -331,7 +331,7 @@ function renderTable(data) {
   document.getElementById('tableCount').textContent = `Showing ${display.length} of ${data.length} records`;
 }
 
-// ===== MASTER UPDATE =====
+// MASTER UPDATE
 function updateDashboard(data) {
   updateKPIs(data);
   renderRevenueTrend(data);
@@ -342,7 +342,7 @@ function updateDashboard(data) {
   renderTable(data);
 }
 
-// ===== SAMPLE DATA FALLBACK =====
+// SAMPLE DATA FALLBACK
 function getSampleData() {
   // Minimal inline fallback
   const raw = `Order ID,Date,Product,Category,Region,Units Sold,Unit Price,Revenue
@@ -355,7 +355,7 @@ function getSampleData() {
   return parseCSV(raw);
 }
 
-// ===== INIT =====
+// INIT
 document.addEventListener('DOMContentLoaded', () => {
   setupUpload();
   document.getElementById('applyFilters').addEventListener('click', applyFilters);

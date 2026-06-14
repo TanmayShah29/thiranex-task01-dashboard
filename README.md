@@ -1,30 +1,30 @@
-# 📊 Task 01 – Sales & Revenue Analysis Dashboard
+# Task 01 . Sales & Revenue Analysis Dashboard
 
 **Internship:** Thiranex Data Analytics Internship  
 **Task:** Build an interactive Sales & Revenue Analysis Dashboard
 
 ---
 
-## 🎯 Objective
+## Objective
 
 Analyze sales and revenue data through an interactive dashboard that visualizes KPIs, revenue trends, and top-performing products.
 
-## ✅ Features
+## Features
 
-- 📁 Import data from CSV / Excel
-- 📈 KPI cards: Total Sales, Total Revenue, Avg Order Value, Top Region
-- 📉 Revenue trend line chart (monthly)
-- 🏆 Top 5 Products by revenue (bar chart)
-- 🗂️ Category-wise sales breakdown (pie chart)
-- 🔍 Interactive filters: Date Range, Category, Region
+- Import data from CSV / Excel
+- KPI cards: Total Sales, Total Revenue, Avg Order Value, Top Region
+- Revenue trend line chart (monthly)
+- Top 5 Products by revenue (bar chart)
+- Category-wise sales breakdown (pie chart)
+- Interactive filters: Date Range, Category, Region
 
-## 🛠️ Tech Stack
+## Tech Stack
 
-- **Frontend:** HTML5, CSS3, Vanilla JavaScript
-- **Charts:** Chart.js
-- **Data:** CSV (sample included)
+- Frontend: HTML5, CSS3, Vanilla JavaScript
+- Charts: Chart.js
+- Data: CSV (sample included)
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 Task-01-Sales-Revenue-Dashboard/
@@ -36,14 +36,14 @@ Task-01-Sales-Revenue-Dashboard/
 └── README.md
 ```
 
-## 🚀 How to Run
+## How to Run
 
 1. Clone the repo
-2. Open `index.html` in any modern browser
+2. Open index.html in any modern browser
 3. The dashboard loads with sample data automatically
-4. Use the **Upload CSV** button to load your own data
+4. Use the Upload CSV button to load your own data
 
-## 📸 Dashboard Sections
+## Dashboard Sections
 
 | Section | Description |
 |---|---|
@@ -53,7 +53,7 @@ Task-01-Sales-Revenue-Dashboard/
 | Category Split | Pie chart by product category |
 | Data Table | Raw data with sorting |
 
-## 🧠 Key Learnings
+## Key Learnings
 
 - Data visualization using Chart.js
 - KPI tracking and business insight generation

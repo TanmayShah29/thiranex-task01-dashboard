@@ -1,4 +1,4 @@
-/* ===== RESET & BASE ===== */
+/* RESET & BASE */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -23,7 +23,7 @@ body {
   min-height: 100vh;
 }
 
-/* ===== HEADER ===== */
+/* HEADER */
 .header {
   background: var(--surface);
   border-bottom: 1px solid var(--border);
@@ -65,10 +65,10 @@ body {
   font-weight: 500;
 }
 
-/* ===== LAYOUT ===== */
+/* LAYOUT */
 .main { padding: 24px 32px; max-width: 1400px; margin: 0 auto; }
 
-/* ===== FILTERS ===== */
+/* FILTERS */
 .filters {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -126,7 +126,7 @@ body {
 }
 .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 
-/* ===== KPI CARDS ===== */
+/* KPI CARDS */
 .kpi-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -168,7 +168,7 @@ body {
 .kpi-sub { font-size: 0.75rem; color: var(--muted); }
 .kpi-icon { position: absolute; right: 16px; top: 16px; font-size: 1.4rem; opacity: 0.4; }
 
-/* ===== CHARTS GRID ===== */
+/* CHARTS GRID */
 .charts-grid {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -207,7 +207,7 @@ body {
 .chart-container { position: relative; height: 240px; }
 .chart-container-sm { position: relative; height: 220px; }
 
-/* ===== SECOND ROW CHARTS ===== */
+/* SECOND ROW CHARTS */
 .charts-row2 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -215,7 +215,7 @@ body {
   margin-bottom: 24px;
 }
 
-/* ===== DATA TABLE ===== */
+/* DATA TABLE */
 .table-card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -274,7 +274,7 @@ tbody td {
 .tag-health { background: rgba(255,217,61,0.15); color: var(--accent4); }
 .tag-home { background: rgba(100,180,255,0.15); color: #64b4ff; }
 
-/* ===== UPLOAD SECTION ===== */
+/* UPLOAD SECTION */
 .upload-zone {
   border: 2px dashed var(--border);
   border-radius: var(--radius);
@@ -288,7 +288,7 @@ tbody td {
 .upload-zone:hover { border-color: var(--accent); }
 .upload-zone p { color: var(--muted); font-size: 0.85rem; margin-top: 8px; }
 
-/* ===== FOOTER ===== */
+/* FOOTER */
 .footer {
   text-align: center;
   padding: 20px;
@@ -297,7 +297,7 @@ tbody td {
   border-top: 1px solid var(--border);
 }
 
-/* ===== RESPONSIVE ===== */
+/* RESPONSIVE */
 @media (max-width: 900px) {
   .kpi-grid { grid-template-columns: repeat(2, 1fr); }
   .charts-grid { grid-template-columns: 1fr; }
