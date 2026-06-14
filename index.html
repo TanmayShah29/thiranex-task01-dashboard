@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sales & Revenue Dashboard | Thiranex Internship</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="header">
+  <div class="header-left">
+    <h1>📊 Sales & Revenue Dashboard</h1>
+    <p>Thiranex Data Analytics Internship — Task 01</p>
+  </div>
+  <div class="header-right">
+    <span class="badge">Jan – Dec 2023</span>
+    <span class="badge" style="background:rgba(0,212,170,0.1);border-color:rgba(0,212,170,0.3);color:#00d4aa;">Live</span>
+  </div>
+</header>
+
+<main class="main">
+
+  <!-- ===== UPLOAD ZONE ===== -->
+  <div class="upload-zone" id="uploadZone">
+    <div style="font-size:1.8rem;">📁</div>
+    <p>Click to upload your own <strong>CSV / Excel</strong> file — or the sample data loads automatically</p>
+    <input type="file" id="csvInput" accept=".csv" style="display:none" />
+  </div>
+
+  <!-- ===== FILTERS ===== -->
+  <div class="filters">
+    <span style="font-size:0.8rem;font-weight:600;color:var(--text);">Filters</span>
+    <div class="filter-divider"></div>
+
+    <div class="filter-group">
+      <label>Category</label>
+      <select id="catFilter">
+        <option value="">All Categories</option>
+        <option>Electronics</option>
+        <option>Furniture</option>
+        <option>Apparel</option>
+        <option>Health</option>
+        <option>Home Appliances</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label>Region</label>
+      <select id="regionFilter">
+        <option value="">All Regions</option>
+        <option>North</option>
+        <option>South</option>
+        <option>East</option>
+        <option>West</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label>From</label>
+      <input type="date" id="dateFrom" value="2024-01-01" />
+    </div>
+
+    <div class="filter-group">
+      <label>To</label>
+      <input type="date" id="dateTo" value="2024-06-30" />
+    </div>
+
+    <div class="filter-divider"></div>
+    <button class="btn btn-primary" id="applyFilters">Apply</button>
+    <button class="btn btn-outline" id="resetFilters">Reset</button>
+  </div>
+
+  <!-- ===== KPI CARDS ===== -->
+  <div class="kpi-grid">
+    <div class="kpi-card purple">
+      <div class="kpi-icon">💰</div>
+      <div class="kpi-label">Total Revenue</div>
+      <div class="kpi-value" id="kpiRevenue">—</div>
+      <div class="kpi-sub">Across all products & regions</div>
+    </div>
+    <div class="kpi-card teal">
+      <div class="kpi-icon">🧾</div>
+      <div class="kpi-label">Total Orders</div>
+      <div class="kpi-value" id="kpiOrders">—</div>
+      <div class="kpi-sub">Unique transactions</div>
+    </div>
+    <div class="kpi-card red">
+      <div class="kpi-icon">📦</div>
+      <div class="kpi-label">Units Sold</div>
+      <div class="kpi-value" id="kpiUnits">—</div>
+      <div class="kpi-sub">Total quantity dispatched</div>
+    </div>
+    <div class="kpi-card yellow">
+      <div class="kpi-icon">🏆</div>
+      <div class="kpi-label">Top Product</div>
+      <div class="kpi-value" id="kpiTop" style="font-size:1.3rem;letter-spacing:-0.5px">—</div>
+      <div class="kpi-sub">By revenue generated</div>
+    </div>
+  </div>
+
+  <!-- ===== MAIN CHARTS ===== -->
+  <div class="charts-grid">
+    <!-- Revenue Trend -->
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">Revenue Trend</div>
+          <div class="chart-subtitle">Monthly revenue over time</div>
+        </div>
+      </div>
+      <div class="chart-container">
+        <canvas id="revenueTrendChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Category Split -->
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">Category Split</div>
+          <div class="chart-subtitle">Revenue by product category</div>
+        </div>
+      </div>
+      <div class="chart-container">
+        <canvas id="categoryChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SECOND ROW ===== -->
+  <div class="charts-row2">
+    <!-- Top Products -->
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">Top 5 Products</div>
+          <div class="chart-subtitle">By total revenue</div>
+        </div>
+      </div>
+      <div class="chart-container-sm">
+        <canvas id="topProductsChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Region Performance -->
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">Region Performance</div>
+          <div class="chart-subtitle">Revenue by sales region</div>
+        </div>
+      </div>
+      <div class="chart-container-sm">
+        <canvas id="regionChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Units Sold -->
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">Units Sold Monthly</div>
+          <div class="chart-subtitle">Volume trend by month</div>
+        </div>
+      </div>
+      <div class="chart-container-sm">
+        <canvas id="unitsTrendChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== DATA TABLE ===== -->
+  <div class="table-card">
+    <div class="chart-header" style="margin-bottom:14px">
+      <div>
+        <div class="chart-title">Transaction Records</div>
+        <div class="chart-subtitle" id="tableCount">Loading...</div>
+      </div>
+    </div>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Date</th>
+            <th>Product</th>
+            <th>Category</th>
+            <th>Region</th>
+            <th>Units</th>
+            <th>Unit Price</th>
+            <th>Revenue</th>
+          </tr>
+        </thead>
+        <tbody id="dataTableBody">
+          <tr><td colspan="8" style="text-align:center;color:var(--muted);padding:32px">Loading data...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</main>
+
+<footer class="footer">
+  Built by Tanmay · Thiranex Data Analytics Internship · Task 01 — Sales & Revenue Dashboard
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
